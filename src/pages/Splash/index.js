@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ILlogo} from '../../assets/illustration';
+import {ILDMC1} from '../../assets';
+import {colors} from '../../utils/colors';
 
-const Splash = () => {
+const Splash = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('Get Started');
+    }, 3000);
+  }, [navigation]);
   return (
     <View style={styles.page}>
-      <ILlogo />
+      <ILDMC1 />
       <Text style={styles.title}>Medical Centre</Text>
     </View>
   );
@@ -15,15 +21,15 @@ export default Splash;
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: '#E5E5E5',
+    backgroundColor: colors.splash,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#112340',
+    fontFamily: 'Nunito-SemiBold',
+    color: colors.text.primary,
     marginTop: 20,
   },
 });

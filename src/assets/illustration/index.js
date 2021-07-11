@@ -1,4 +1,4 @@
-import ILlogo from './logo.svg';
 import ILBG from './get-started.png';
+import ILDMC1 from './DMC 1.svg';
 
-export {ILlogo, ILBG};
+export {ILBG, ILDMC1};
