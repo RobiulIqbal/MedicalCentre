@@ -4,7 +4,7 @@ import {DummyDoctor1, DummyDoctor2, DummyDoctor3} from '../../assets';
 import {List} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const Massages = () => {
+const Massages = ({navigation}) => {
   const [Doctors] = useState([
     {
       key: 1,
@@ -36,6 +36,7 @@ const Massages = () => {
               profile={doctor.profile}
               nama={doctor.nama}
               desc={doctor.desc}
+              onPress={() => navigation.navigate('Chatting')}
             />
           );
         })}

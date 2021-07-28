@@ -4,7 +4,7 @@ import {IconAddPhoto, ILNulPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const UploadPhoto = () => {
+const UploadPhoto = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" />
@@ -18,9 +18,17 @@ const UploadPhoto = () => {
           <Text style={styles.profesi}>Full Stack React Native</Text>
         </View>
         <View>
-          <Button title="Upload And Continue" />
+          <Button
+            title="Upload And Continue"
+            onPress={() => navigation.replace('MainApp')}
+          />
           <Gap height={30} />
-          <Link title="Skip for This" align="center" size={16} />
+          <Link
+            title="Skip for This"
+            align="center"
+            size={16}
+            onPress={() => navigation.replace('MainApp')}
+          />
         </View>
       </View>
     </View>

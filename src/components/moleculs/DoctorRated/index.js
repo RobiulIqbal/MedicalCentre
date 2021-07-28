@@ -1,16 +1,16 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DummyDoctor1} from '../../../assets/dummy';
 import {IconStar} from '../../../assets/icon';
 import {fonts, colors} from '../../../utils';
 
-const DoctorRated = () => {
+const DoctorRated = ({nama, desc, avatar, onPress}) => {
   return (
-    <View style={styles.content}>
-      <Image source={DummyDoctor1} style={styles.avatar} />
+    <TouchableOpacity style={styles.content} onPress={onPress}>
+      <Image source={avatar} style={styles.avatar} />
       <View style={styles.textWrapper}>
-        <Text style={styles.nama}>Faridah Husnatul</Text>
-        <Text style={styles.label}>Dokter Psikiater</Text>
+        <Text style={styles.nama}>{nama}</Text>
+        <Text style={styles.label}>{desc}</Text>
       </View>
       <View style={styles.rate}>
         <IconStar />
@@ -19,7 +19,7 @@ const DoctorRated = () => {
         <IconStar />
         <IconStar />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,
+    alignItems: 'center',
   },
   avatar: {width: 50, height: 50, borderRadius: 50 / 2, marginRight: 12},
-  rate: {flexDirection: 'row'},
+  rate: {flexDirection: 'row', alignItems: 'center'},
   textWrapper: {flex: 1},
   nama: {
     fontSize: 16,

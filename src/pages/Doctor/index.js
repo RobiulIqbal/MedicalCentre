@@ -1,6 +1,11 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {JSONCetegoryDoctor} from '../../assets';
+import {
+  DummyDoctor2,
+  DummyDoctor3,
+  DummyDoctor5,
+  JSONCetegoryDoctor,
+} from '../../assets';
 import {
   DoctorCategory,
   DoctorRated,
@@ -43,9 +48,24 @@ const Doctor = ({navigation}) => {
           </View>
           <View style={styles.wrapContent}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-            <DoctorRated />
-            <DoctorRated />
-            <DoctorRated />
+            <DoctorRated
+              nama="Faridah Gembul"
+              desc="Psikatrian"
+              avatar={DummyDoctor2}
+              onPress={() => navigation.navigate('DokterProfile')}
+            />
+            <DoctorRated
+              nama="Asato Ayaka"
+              desc="Dokter Anak"
+              avatar={DummyDoctor3}
+              onPress={() => navigation.navigate('DokterProfile')}
+            />
+            <DoctorRated
+              nama="Razor Blade"
+              desc="Dokter Srigala"
+              avatar={DummyDoctor5}
+              onPress={() => navigation.navigate('DokterProfile')}
+            />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
           <NewsItem />

@@ -3,12 +3,12 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {DummyUser, IconRemovePhoto} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const Profile = ({nama, desc}) => {
+const Profile = ({nama, desc, isRemove}) => {
   return (
     <View style={styles.container}>
       <View style={styles.borderList}>
         <Image source={DummyUser} style={styles.avatar} />
-        <IconRemovePhoto style={styles.removePhoto} />
+        {isRemove && <IconRemovePhoto style={styles.removePhoto} />}
       </View>
       {nama && (
         <View style={styles.content}>
@@ -40,12 +40,14 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
     marginTop: 16,
+    textAlign: 'center',
   },
   profesi: {
     fontFamily: fonts.primary[600],
     fontSize: 16,
     color: colors.text.secondary,
     marginTop: 2,
+    textAlign: 'center',
   },
   removePhoto: {position: 'absolute', right: 8, bottom: 8},
 });

@@ -7,7 +7,7 @@ import {colors} from '../../utils';
 const UserProfile = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title="Profile" />
+      <Header title="Profile" onPress={() => navigation.goBack()} />
       <Gap height={20} />
       <Profile nama="Irob Leboq" desc="React Native Developer" />
       <Gap height={15} />
