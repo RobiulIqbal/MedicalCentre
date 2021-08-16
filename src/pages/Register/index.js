@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Button, Input, Header, Gap, Loading} from '../../components';
 import {Firebase} from '../../config';
-import {colors, useForm} from '../../utils';
+import {colors, getData, storeData, useForm} from '../../utils';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -23,16 +24,38 @@ const Register = ({navigation}) => {
         // Signed in
         setLoading(false);
         setForm('reset');
+        const data = {
+          fullName: form.fullName,
+          profesi: form.profesi,
+          email: form.email,
+          uid: success.user.uid,
+        };
+        Firebase.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
+
+        storeData('user', data);
+        navigation.navigate('UploadPhoto', data);
+        showMessage({
+          message: 'Berhasil daftar!',
+          type: 'default',
+          backgroundColor: colors.succesmassage,
+          color: colors.white,
+        });
         console.log('ini Sukses', success);
         // ...
       })
       .catch(error => {
         const errorMessage = error.message;
         setLoading(false);
-        console.log('Pesan Error: ', errorMessage);
+        showMessage({
+          message: errorMessage,
+          type: 'default',
+          backgroundColor: colors.erorrmassage,
+          color: colors.white,
+        });
         // ..
       });
-    // () => navigation.navigate('UploadPhoto')
   };
 
   return (

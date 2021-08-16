@@ -18,7 +18,7 @@ const List = ({profile, nama, desc, type, onPress, icon}) => {
     if (icon === 'langguage') {
       return <IconLangguage />;
     }
-    if (icon === 'Rate') {
+    if (icon === 'rate') {
       return <IconRate />;
     }
     if (icon === 'help') {

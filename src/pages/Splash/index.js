@@ -1,13 +1,24 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILDMC1} from '../../assets';
+import {Firebase} from '../../config';
 import {fonts} from '../../utils';
 import {colors} from '../../utils/colors';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('Get Started');
+      Firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          //Jika Masih dalam keadaan login
+          console.log('user: ', user);
+          navigation.replace('MainApp');
+        } else {
+          //Jika sudah dalam keadaaan logout
+          navigation.replace('Get Started');
+        }
+      });
+      // navigation.replace('Get Started');
     }, 3000);
   }, [navigation]);
   return (

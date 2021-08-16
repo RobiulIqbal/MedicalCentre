@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {
   DummyDoctor2,
@@ -13,7 +13,7 @@ import {
   HomeProfile,
   NewsItem,
 } from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, getData} from '../../utils';
 
 const Doctor = ({navigation}) => {
   return (
