@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
 import {Gap} from '../../components/atoms';
 import {Header, List, Profile} from '../../components/moleculs';
 import {Firebase} from '../../config';
-import {colors, getData} from '../../utils';
+import {colors, getData, showErr} from '../../utils';
 
 const UserProfile = ({navigation}) => {
   const [profile, setProfile] = useState({
@@ -24,16 +23,10 @@ const UserProfile = ({navigation}) => {
     Firebase.auth()
       .signOut()
       .then(res => {
-        console.log('Berhasil Sign Out');
         navigation.replace('Get Started');
       })
       .catch(err => {
-        showMessage({
-          message: err.message,
-          type: 'default',
-          backgroundColor: colors.erorrmassage,
-          color: colors.white,
-        });
+        showErr(err.message);
       });
   };
 

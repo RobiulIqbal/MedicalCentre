@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {IconAddPhoto, IconRemovePhoto, ILNulPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
 import {Firebase} from '../../config';
-import {colors, fonts, storeData} from '../../utils';
+import {colors, fonts, storeData, showErr} from '../../utils';
 
 const UploadPhoto = ({navigation, route}) => {
   const {fullName, profesi, uid} = route.params;
@@ -17,14 +16,8 @@ const UploadPhoto = ({navigation, route}) => {
       {quality: 0.5, maxWidth: 200, maxHeight: 200, includeBase64: true},
       response => {
         if (response.didCancel || response.error) {
-          showMessage({
-            message: 'oops!, sepertinya anda belum memilih fotonya?',
-            type: 'default',
-            backgroundColor: colors.erorrmassage,
-            color: colors.white,
-          });
+          showErr('oops!, sepertinya anda belum memilih fotonya?');
         } else {
-          console.log('response getImageData: ', response);
           setPhotoForDb(
             `data:${response.assets[0].type};base64, ${response.assets[0].base64}`,
           );

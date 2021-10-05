@@ -4,15 +4,15 @@ import {DummyDoctor6, DummyDoctor7, DummyDoctor8} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 
-const DarkProfile = ({onPress}) => {
+const DarkProfile = ({onPress, title, desc, photo}) => {
   return (
     <View style={styles.container}>
       <Button type="icon-only" icon="back-light" onPress={onPress} />
       <View style={styles.content}>
-        <Text style={styles.nama}>Faridah Husnatul</Text>
-        <Text style={styles.desc}>Dokter Anak</Text>
+        <Text style={styles.nama}>{title}</Text>
+        <Text style={styles.desc}>{desc}</Text>
       </View>
-      <Image source={DummyDoctor6} style={styles.avatar} />
+      <Image source={photo} style={styles.avatar} />
     </View>
   );
 };
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontFamily: fonts.primary[600],
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   desc: {
     fontSize: 14,
@@ -44,5 +45,6 @@ const styles = StyleSheet.create({
     marginTop: 6,
     textAlign: 'center',
     color: colors.text.subTitle,
+    textTransform: 'capitalize',
   },
 });

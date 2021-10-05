@@ -7,19 +7,18 @@ import {colors} from '../../utils/colors';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
-    setTimeout(() => {
-      Firebase.auth().onAuthStateChanged(user => {
+    const bugRegister = Firebase.auth().onAuthStateChanged(user => {
+      setTimeout(() => {
         if (user) {
           //Jika Masih dalam keadaan login
-          console.log('user: ', user);
           navigation.replace('MainApp');
         } else {
           //Jika sudah dalam keadaaan logout
           navigation.replace('Get Started');
         }
-      });
-      // navigation.replace('Get Started');
-    }, 3000);
+      }, 3000);
+    });
+    return () => bugRegister();
   }, [navigation]);
   return (
     <View style={styles.page}>

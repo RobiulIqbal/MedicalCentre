@@ -5,16 +5,16 @@ import {colors, fonts} from '../../../utils';
 
 const DoctorCategory = ({category, onPress}) => {
   const Icon = () => {
-    if (category === 'Dokter Umum') {
+    if (category === 'dokter umum') {
       return <ILCatUmum style={styles.illustration} />;
     }
-    if (category === 'Psikiater') {
+    if (category === 'psikiater') {
       return <ILCatPsikiater style={styles.illustration} />;
     }
-    if (category === 'Dokter Obat') {
+    if (category === 'dokter obat') {
       return <ILCatOBat style={styles.illustration} />;
     }
-    if (category === 'Dokter Anak') {
+    if (category === 'dokter anak') {
       return <ILCatAnak style={styles.illustration} />;
     }
     return <ILCatUmum style={styles.illustration} />;

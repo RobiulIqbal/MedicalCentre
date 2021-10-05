@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {ILNulPhoto} from '../../assets';
 import {Button, Gap, Header, Input, List, Profile} from '../../components';
 import {Firebase} from '../../config';
-import {colors, getData, storeData} from '../../utils';
+import {colors, getData, storeData, showErr} from '../../utils';
 
 const UpdateProfile = ({navigation}) => {
   const [profile, setProfile] = useState({
@@ -27,18 +26,9 @@ const UpdateProfile = ({navigation}) => {
   }, []);
 
   const update = () => {
-    console.log('Update: ', profile);
-
-    console.log('New Pasword', password);
-
     if (password.length > 0) {
       if (password.length < 6) {
-        showMessage({
-          message: 'Password Kurang dari 6 Karakter',
-          type: 'default',
-          backgroundColor: colors.erorrmassage,
-          color: colors.white,
-        });
+        showErr('Password Kurang dari 6 Karakter');
       } else {
         //update Password
         updatePasswordData();
@@ -55,12 +45,7 @@ const UpdateProfile = ({navigation}) => {
     Firebase.auth().onAuthStateChanged(user => {
       if (user) {
         user.updatePassword(password).catch(err => {
-          showMessage({
-            message: err.message,
-            type: 'default',
-            backgroundColor: colors.erorrmassage,
-            color: colors.white,
-          });
+          showErr(err.message);
         });
       }
     });
@@ -73,16 +58,10 @@ const UpdateProfile = ({navigation}) => {
       .ref(`users/${profile.uid}/`)
       .update(data)
       .then(() => {
-        console.log('success: ', data);
         storeData('user', data);
       })
       .catch(err => {
-        showMessage({
-          message: err.message,
-          type: 'default',
-          backgroundColor: colors.erorrmassage,
-          color: colors.white,
-        });
+        showErr(err.message);
       });
   };
 
@@ -97,14 +76,8 @@ const UpdateProfile = ({navigation}) => {
       {quality: 0.5, maxWidth: 200, maxHeight: 200, includeBase64: true},
       response => {
         if (response.didCancel || response.error) {
-          showMessage({
-            message: 'oops!, sepertinya anda belum memilih fotonya?',
-            type: 'default',
-            backgroundColor: colors.erorrmassage,
-            color: colors.white,
-          });
+          showErr('oops!, sepertinya anda belum memilih fotonya?');
         } else {
-          console.log('response getImageData: ', response);
           setPhotoForDb(
             `data:${response.assets[0].type};base64, ${response.assets[0].base64}`,
           );

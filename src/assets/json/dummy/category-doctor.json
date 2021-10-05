@@ -15,6 +15,10 @@
     {
       "id": 4,
       "category": "Dokter Anak"
+    },
+    {
+      "id": 5,
+      "category": "Dokter Umum"
     }
   ]
 }
