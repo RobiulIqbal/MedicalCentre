@@ -26,7 +26,6 @@ const ChooseDoctor = ({navigation, route}) => {
       .equalTo(category)
       .once('value')
       .then(res => {
-        console.log('data respons category: ', res.val());
         if (res.val()) {
           const oldData = res.val();
           const data = [];
@@ -36,7 +35,6 @@ const ChooseDoctor = ({navigation, route}) => {
               data: oldData[item],
             });
           });
-          console.log('Response data parse: ', data);
           setListDoctors(data);
         }
       });

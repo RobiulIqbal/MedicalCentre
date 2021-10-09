@@ -44,7 +44,6 @@ const Chatting = ({navigation, route}) => {
               data: newData,
             });
           });
-          console.log('all Data Chat : ', allDataChat);
           setChatData(allDataChat);
         }
       });
@@ -52,7 +51,6 @@ const Chatting = ({navigation, route}) => {
 
   const getDataUserFromLocal = () => {
     getData('user').then(res => {
-      console.log('Data : ', res);
       setUser(res);
     });
   };

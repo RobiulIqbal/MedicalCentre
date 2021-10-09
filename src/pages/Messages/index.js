@@ -22,7 +22,6 @@ const Massages = ({navigation}) => {
         const promises = await Object.keys(oldData).map(async key => {
           const urlUidDoctor = `doctors/${oldData[key].uidPartner}`;
           const detailDoctor = await rootDB.child(urlUidDoctor).once('value');
-          console.log('Data Detail Doctor : ', detailDoctor.val());
           data.push({
             id: key,
             detailDoctor: detailDoctor.val(),
@@ -32,7 +31,6 @@ const Massages = ({navigation}) => {
 
         await Promise.all(promises);
 
-        console.log('Data Snapshot : ', data);
         setHistoryChat(data);
       }
     });
@@ -40,7 +38,6 @@ const Massages = ({navigation}) => {
 
   const getDataUserFromLocal = () => {
     getData('user').then(res => {
-      console.log('Data : ', res);
       setUser(res);
     });
   };
